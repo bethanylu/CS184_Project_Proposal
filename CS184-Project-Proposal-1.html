@@ -1,0 +1,316 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;}
+h2
+	{margin-top:.25in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:normal;}
+.MsoChpDefault
+	{font-family:"Arial",sans-serif;}
+.MsoPapDefault
+	{line-height:115%;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<h2 align=center style='margin-bottom:12.0pt;text-align:center'><span lang=EN>CS184
+Project Proposal: Iridescent Materials</span></h2>
+
+<h2 align=center style='margin-bottom:12.0pt;text-align:center'><a
+name="_c6v62i75sj07"></a><span lang=EN>Bethany Lu, Jose Alfaro, Michael Chou,
+Aashika Jhawar</span></h2>
+
+<p class=MsoNormal align=center style='margin-bottom:12.0pt;text-align:center'><span
+lang=EN style='font-size:12.0pt;line-height:115%;color:#333333'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='margin-bottom:12.0pt;text-align:center'><b><span
+lang=EN style='font-size:13.0pt;line-height:115%;color:#333333'>Summary</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'><span lang=EN style='font-size:
+12.0pt;line-height:115%;color:#333333'>For the final project we want to extend
+project 3-2 to support textured models. Specifically, we are interested in
+iridescent rendering and the implementation of interference colors as a
+spectral representation of light. </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.0pt;
+margin-left:.5in'><span lang=EN style='font-size:12.0pt;line-height:115%;
+color:#333333'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='margin-bottom:12.0pt;text-align:center'><b><span
+lang=EN style='font-size:13.0pt;line-height:115%;color:#333333'>Problem
+Description</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'><span lang=EN style='font-size:
+12.0pt;line-height:115%;color:#333333'>Our project Pathtracer doesn’t support
+textures! Using our previous Pathtracer project as a skeleton, we want to
+extend functionality so that it is able to support iridescence textures.
+Iridescence is necessary for the rendering of certain objects such as soap
+bubbles, butterfly wings, and the surface of CDs to name a few. To handle
+iridescence, we must be more nuanced in the way we treat light as a wavelength,
+by having to track phase shifts and refraction along iridescent surfaces. To
+solve this, we plan on looking into using a wavelength based BRDF function to
+render thin films and pearlescent surfaces. We can derive the reflectance using
+Beckmann’s distribution solution, an approach we previously implemented to
+render Microfacet models in Pathtracer 3-2.</span></p>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'><span lang=EN style='font-size:
+12.0pt;line-height:115%;color:#333333'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='margin-bottom:12.0pt;text-align:center'><b><span
+lang=EN style='font-size:13.0pt;line-height:115%;color:#333333'>Goals and Deliverables</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'><b><span lang=EN
+style='font-size:12.0pt;line-height:115%;color:#333333'>Define how you will
+measure the quality / performance of your system (e.g. graphs showing speedup,
+or quantifying accuracy). It may not be possible to define precise target
+metrics at this time, but we encourage you to try.</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'><span lang=EN style='font-size:
+12.0pt;line-height:115%;color:#333333'>In order to test the accuracy and
+performance of our implementation we will test our rendering across multiple
+images that depict iridescent lighting (soap bubbles/butterfly wings/peacock
+feathers). This will allow us to compare our renderings to original images to
+determine if our project is working properly. Additionally, by adjusting the
+sampling rate and multibounce light effects at varying levels, we plan to test
+the efficacy of our solution as we know that increasing these metrics should
+yield better images with proper implementation. Furthermore, we intend to
+update our model to handle different wavelengths of light for each color and
+will use different input levels for these parameters to test our models
+accuracy as well.</span></p>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'><b><span lang=EN
+style='font-size:12.0pt;line-height:115%;color:#333333'>What do you plan to
+deliver? describe what you believe you must accomplish to have a successful
+project and achieve the grade you expect (i.e. your baseline plan -- planning
+for some unexpected problems would make sense). </span></b></p>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'><span lang=EN style='font-size:
+12.0pt;line-height:115%;color:#333333'>Our baseline plan is to extend our
+pathtracer model to support iridescent materials and project this to a dae
+model that we have already seen in class. </span></p>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'><span lang=EN style='font-size:
+12.0pt;line-height:115%;color:#333333'>A problem that we foresee is how to
+implement light as a wave instead of just a vector, which was our previous
+approach in Pathtracer. This is necessary in order to render iridescent material
+because iridescence is an optimal phenomenon caused by the interference between
+waves of light.</span></p>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'><b><span lang=EN
+style='font-size:12.0pt;line-height:115%;color:#333333'>What do you hope to
+deliver? describe what you hope to achieve if things go well and you get ahead
+of schedule (your aspirational plan)</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'><span lang=EN style='font-size:
+12.0pt;line-height:115%;color:#333333'>We hope to deliver a more advanced
+rendering system that is able to depict complex material modeling of thin-film
+materials across various thicknesses. This will allow us to render images in
+which light reflects and refracts to create iridescent colors on both existing images
+that we have seen in previous projects as well as new images.</span></p>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'><span lang=EN style='font-size:
+12.0pt;line-height:115%;color:#333333'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='margin-bottom:12.0pt;text-align:center'><b><span
+lang=EN style='font-size:13.0pt;line-height:115%;color:#333333'>Schedule</span></b></p>
+
+<p class=MsoNormal align=center style='margin-bottom:12.0pt;text-align:center'><b><span
+lang=EN style='font-size:12.0pt;line-height:115%;color:#333333'>1st week (04/13
+- 04/20): </span></b></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span lang=EN
+style='font-size:12.0pt;line-height:115%;color:#333333'>●<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN style='font-size:12.0pt;line-height:115%;color:#333333'>Research
+methods and colors to implement iridescence.</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.0pt;
+margin-left:.5in;text-indent:-.25in'><span lang=EN style='font-size:12.0pt;
+line-height:115%;color:#333333'>●<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN style='font-size:12.0pt;line-height:115%;
+color:#333333'>Compile resources, collect models to render, start coding.</span></p>
+
+<p class=MsoNormal align=center style='margin-bottom:12.0pt;text-align:center'><b><span
+lang=EN style='font-size:12.0pt;line-height:115%;color:#333333'>2nd week (04/20
+- 04/27):</span></b></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span lang=EN
+style='font-size:12.0pt;line-height:115%;color:#333333'>●<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN style='font-size:12.0pt;line-height:115%;color:#333333'>Begin coding and
+complete a first draft of our material modeling</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span lang=EN
+style='font-size:12.0pt;line-height:115%;color:#333333'>●<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN style='font-size:12.0pt;line-height:115%;color:#333333'>Render our
+example images and check for accuracy</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span lang=EN
+style='font-size:12.0pt;line-height:115%;color:#333333'>●<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN style='font-size:12.0pt;line-height:115%;color:#333333'>Debug our
+project based on initial results </span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.0pt;
+margin-left:.5in;text-indent:-.25in'><span lang=EN style='font-size:12.0pt;
+line-height:115%;color:#333333'>●<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN style='font-size:12.0pt;line-height:115%;
+color:#333333'>Check in with TA’s on difficulty of project and sanity checks</span></p>
+
+<p class=MsoNormal align=center style='margin-bottom:12.0pt;text-align:center'><b><span
+lang=EN style='font-size:12.0pt;line-height:115%;color:#333333'>3rd week (04/27
+- 04/04):</span></b></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span lang=EN
+style='font-size:12.0pt;line-height:115%;color:#333333'>●<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN style='font-size:12.0pt;line-height:115%;color:#333333'>Continue
+debugging and build upon our existing code to increase accuracy</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.0pt;
+margin-left:.5in;text-indent:-.25in'><span lang=EN style='font-size:12.0pt;
+line-height:115%;color:#333333'>●<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN style='font-size:12.0pt;line-height:115%;
+color:#333333'>Add in extra textures if we have time</span></p>
+
+<p class=MsoNormal align=center style='margin-bottom:12.0pt;text-align:center'><b><span
+lang=EN style='font-size:12.0pt;line-height:115%;color:#333333'>4th week (05/04
+- 05/11):</span></b></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span lang=EN
+style='font-size:12.0pt;line-height:115%;color:#333333'>●<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN style='font-size:12.0pt;line-height:115%;color:#333333'>Finish up final
+ends</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span lang=EN
+style='font-size:12.0pt;line-height:115%;color:#333333'>●<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN style='font-size:12.0pt;line-height:115%;color:#333333'>Compile presentation</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span lang=EN
+style='font-size:12.0pt;line-height:115%;color:#333333'>●<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN style='font-size:12.0pt;line-height:115%;color:#333333'>Create video
+walkthrough</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.0pt;
+margin-left:.5in;text-indent:-.25in'><span lang=EN style='font-size:12.0pt;
+line-height:115%;color:#333333'>●<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN style='font-size:12.0pt;line-height:115%;
+color:#333333'>Publish project webpage</span></p>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'><span lang=EN style='font-size:
+12.0pt;line-height:115%;color:#333333'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='margin-bottom:12.0pt;text-align:center'><b><span
+lang=EN style='font-size:13.0pt;line-height:115%;color:#333333'>Resources</span></b></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span lang=EN
+style='font-size:12.0pt;line-height:115%;color:#333333'>■<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN style='font-size:12.0pt;line-height:115%;color:#333333'>Lecture 14:
+Material Modeling - </span><span lang=EN><a
+href="https://cs184.eecs.berkeley.edu/sp21/lecture/14/material-modeling"><span
+style='font-size:12.0pt;line-height:115%;color:#1155CC'>https://cs184.eecs.berkeley.edu/sp21/lecture/14/material-modeling</span></a></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span lang=EN
+style='font-size:12.0pt;line-height:115%;color:#333333'>■<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN style='font-size:12.0pt;line-height:115%;color:#333333'>Project 3-2
+Code - We intend to build upon our existing pathtracer projects in order to
+expand its functionality. </span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span lang=EN
+style='font-size:12.0pt;line-height:115%;color:#333333'>■<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN style='font-size:12.0pt;line-height:115%;color:#333333'>A Practical
+Extension to Microfacet Theory for the Modeling of Varying Iridescence by
+Laurent Belcour, Pascal Barla: </span><span lang=EN><a
+href="https://hal.archives-ouvertes.fr/hal-01518344/document"><span
+style='font-size:12.0pt;line-height:115%;color:#1155CC'>https://hal.archives-ouvertes.fr/hal-01518344/document</span></a></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in'><span lang=EN
+style='font-size:12.0pt;line-height:115%;color:#333333'>●<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN style='font-size:12.0pt;line-height:115%;color:#333333'>This paper
+outlines some of the derivations of reflection and refraction expanding on
+microfacet materials that we will utilize to build out our BRDF model. </span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span lang=EN
+style='font-size:12.0pt;line-height:115%;color:#333333'>■<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN style='font-size:12.0pt;line-height:115%;color:#333333'>A paper on
+wavelength dependent reflectance functions </span><span lang=EN><a
+href="https://www-users.cs.umn.edu/~gmeyer/papers/gondek-meyer-siggraph-1994.pdf"><span
+style='font-size:12.0pt;line-height:115%;color:#1155CC'>https://www-users.cs.umn.edu/~gmeyer/papers/gondek-meyer-siggraph-1994.pdf</span></a></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span lang=EN
+style='font-size:12.0pt;line-height:115%;color:#333333'>■<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN style='font-size:12.0pt;line-height:115%;color:#333333'>A paper on
+rendering iridescent soap bubbles </span><span lang=EN><a
+href="http://www.dgp.toronto.edu/~nmorris/CSC2530/Project/morris.pdf"><span
+style='font-size:12.0pt;line-height:115%;color:#1155CC'>http://www.dgp.toronto.edu/~nmorris/CSC2530/Project/morris.pdf</span></a></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:12.0pt;
+margin-left:.5in;text-indent:-.25in'><span lang=EN style='font-size:12.0pt;
+line-height:115%;color:#333333'>■<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN style='font-size:12.0pt;line-height:115%;
+color:#333333'>Slides from Cornell on textures and raytracing </span><span
+lang=EN><a
+href="https://www.cs.cornell.edu/courses/cs4620/2017sp/slides/06rt-textures.pdf"><span
+style='font-size:12.0pt;line-height:115%;color:#1155CC'>https://www.cs.cornell.edu/courses/cs4620/2017sp/slides/06rt-textures.pdf</span></a></span></p>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'><span lang=EN style='font-size:
+12.0pt;line-height:115%;color:#333333'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>
